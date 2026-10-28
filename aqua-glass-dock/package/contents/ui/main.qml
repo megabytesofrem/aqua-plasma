@@ -39,7 +39,10 @@ PlasmoidItem {
             launcherList: {
                 const launchers = [];
                 for (let i = 0; i < dockItemModel.count; ++i) {
-                    launchers.push(dockItemModel.get(i).launcherUrl);
+                    const item = dockItemModel.get(i);
+                    if (!item.isTrash) {
+                        launchers.push(item.launcherUrl);
+                    }
                 }
                 return launchers;
             }
@@ -74,10 +77,10 @@ PlasmoidItem {
             }
         }
 
-        // Icons in the dock (horizontal list)
         ListModel {
             id: dockItemModel
 
+            // Default pinned applications
             ListElement {
                 name: "Dolphin"
                 iconSource: "system-file-manager"
@@ -88,10 +91,41 @@ PlasmoidItem {
                 name: "Firefox"
                 iconSource: "firefox"
                 launcherUrl: "applications:org.mozilla.firefox.desktop"
-                isRunning: true
+            }
+
+            ListElement {
+                name: "Konsole"
+                iconSource: "utilities-terminal"
+                launcherUrl: "applications:org.kde.konsole.desktop"
+            }
+
+            ListElement {
+                name: "Kate"
+                iconSource: "kate"
+                launcherUrl: "applications:org.kde.kate.desktop"
+            }
+
+            ListElement {
+                name: "KCalc"
+                iconSource: "kcalc"
+                launcherUrl: "applications:org.kde.kcalc.desktop"
+            }
+
+            ListElement {
+                name: "Discover"
+                iconSource: "plasmadiscover"
+                launcherUrl: "applications:org.kde.discover.desktop"
+            }
+
+            ListElement {
+                name: "Trash"
+                iconSource: "user-trash"
+                launcherUrl: "trash:/"
+                isSpecialFolder: true
             }
         }
 
+        // Application icons in the dock
         ListView {
             id: dockListView
             anchors.horizontalCenter: parent.horizontalCenter
@@ -191,7 +225,7 @@ PlasmoidItem {
                 }
                 GradientStop {
                     position: 1.0
-                    color: "#D01E2024" // ~81% opacity
+                    color: '#491e2024' // ~29% opacity
                 }
             }
 
@@ -201,7 +235,7 @@ PlasmoidItem {
                 anchors.right: parent.right
                 anchors.top: parent.bottom
                 height: 2
-                color: '#5e8c8c8c'
+                color: '#acffffff'
                 opacity: 0.4
             }
         }

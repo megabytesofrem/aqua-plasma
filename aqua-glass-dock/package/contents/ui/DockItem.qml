@@ -10,11 +10,15 @@ Item {
     required property string name
     required property string launcherUrl
 
+    // Whether this dock item represents a special folder (e.g., Trash)
+    required property bool isSpecialFolder
+
+    property bool isStack: false // Whether this dock item represents a stack
+    property bool isRunning: false // Whether the application associated with this dock item is running
+
     signal launchRequested(string launcherUrl)
 
-    property bool isRunning: false
-
-    // Base dimensions & scaling logic
+    // Base dimensions & scaling logic, used for hover scaling and icon sizing
     property real baseSize: 64
     property real hoverScale: mouseArea.containsMouse ? 1.8 : 1.0
 
@@ -55,6 +59,8 @@ Item {
     Item {
         id: iconContainer
         anchors.fill: parent
+
+        // Apply the bounce offset transform for the icon bounce animation
         transform: Translate {
             id: bounceOffset
         }
@@ -67,6 +73,7 @@ Item {
             height: root.baseSize * root.hoverScale
             spacing: 2
 
+            // Animate the height of the icon container when hover scaling changes
             Behavior on height {
                 NumberAnimation {
                     duration: 150
@@ -102,10 +109,16 @@ Item {
         height: root.baseSize * root.hoverScale
         hoverEnabled: true
         onClicked: {
-            // Launch the application associated with this dock item
-            root.launchRequested(root.launcherUrl);
-
             iconBounce.restart();
+
+            if (root.isSpecialFolder) {
+                if (!Qt.openUrlExternally(root.launcherUrl)) {
+                    console.warn("Aqua Glass Dock: could not open", root.launcherUrl);
+                }
+                return;
+            } else {
+                root.launchRequested(root.launcherUrl);
+            }
         }
     }
 }
