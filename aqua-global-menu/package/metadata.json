@@ -1,0 +1,12 @@
+{
+    "KPackageStructure": "Plasma/Applet",
+    "KPlugin": {
+        "Id": "com.megabytesofrem.aqua-global-menu",
+        "Name": "Aqua Global Menu",
+        "Description": "Aqua Global Menu",
+        "Icon": "application-menu",
+        "Category": "Windows and Tasks",
+        "Version": "0.1.0"
+    },
+    "X-Plasma-API-Minimum-Version": "6.0"
+}

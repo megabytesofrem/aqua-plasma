@@ -1,0 +1,12 @@
+{
+    "KPackageStructure": "Plasma/Applet",
+    "KPlugin": {
+        "Id": "com.megabytesofrem.aqua-glass-dock",
+        "Name": "Aqua Glass Dock",
+        "Description": "Aqua Glass Dock",
+        "Icon": "preferences-desktop",
+        "Category": "Windows and Tasks",
+        "Version": "0.1.0"
+    },
+    "X-Plasma-API-Minimum-Version": "6.0"
+}
