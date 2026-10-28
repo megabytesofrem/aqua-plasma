@@ -1,5 +1,5 @@
 # Aqua Plasma
-A work in total transformation pack to make KDE Plasma look and feel like Mac OS X Snow Leopard, inspired by the aerothemeplasma project.
+A work in progress total transformation pack to make KDE Plasma look and feel like Mac OS X Snow Leopard, inspired by the aerothemeplasma project.
 
 ## Install
 
